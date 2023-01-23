@@ -15,7 +15,13 @@ class DataFlowRepositoryImpl @Inject constructor(
         page: Int,
         perPage: Int
     ) = flow {
-        emit(dataService.getSearchUsers(userId, page, perPage))
+        runCatching {
+            dataService.getSearchUsers(userId, page, perPage)
+        }.onSuccess {
+            emit(it)
+        }.onFailure { exception ->
+            throw exception
+        }
     }.flowOn(Dispatchers.IO)
 
     companion object {
