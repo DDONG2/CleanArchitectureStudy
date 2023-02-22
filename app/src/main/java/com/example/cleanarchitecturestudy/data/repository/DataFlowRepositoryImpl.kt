@@ -1,13 +1,14 @@
 package com.example.cleanarchitecturestudy.data.repository
 
 import com.example.cleanarchitecturestudy.data.service.DataService
+import com.example.cleanarchitecturestudy.data.source.DataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class DataFlowRepositoryImpl @Inject constructor(
-    private val dataService: DataService,
+    private val dataSource: DataSource,
 ) : DataFlowRepository {
 
     override fun queryFlow(
@@ -16,7 +17,7 @@ class DataFlowRepositoryImpl @Inject constructor(
         perPage: Int
     ) = flow {
         runCatching {
-            dataService.getSearchUsers(userId, page, perPage)
+            dataSource.getSearchUsers(userId, page, perPage)
         }.onSuccess {
             emit(it)
         }.onFailure { exception ->
