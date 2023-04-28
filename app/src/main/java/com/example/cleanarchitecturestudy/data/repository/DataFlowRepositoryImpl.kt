@@ -1,6 +1,5 @@
 package com.example.cleanarchitecturestudy.data.repository
 
-import com.example.cleanarchitecturestudy.data.service.DataService
 import com.example.cleanarchitecturestudy.data.source.DataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
