@@ -1,6 +1,6 @@
 package com.example.cleanarchitecturestudy.data.repository
 
-import com.example.cleanarchitecturestudy.data.source.DataSource
+import com.example.cleanarchitecturestudy.data.source.datasource.DataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
