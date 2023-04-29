@@ -3,6 +3,7 @@ package com.example.cleanarchitecturestudy.presenter
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import com.example.cleanarchitecturestudy.BaseViewModel
 import com.example.cleanarchitecturestudy.domain.DataFlowUseCase
 import com.example.cleanarchitecturestudy.domain.model.RepoInfo
@@ -20,22 +21,21 @@ class HomeFragmentViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
 
-    private val _result = MutableStateFlow<List<RepoInfo>>(emptyList())
+    private val _result = MutableStateFlow<PagingData<RepoInfo>>(PagingData.empty())
     val result = _result.asStateFlow()
 
     private val _error = MutableSharedFlow<String>()
     val error = _error.asSharedFlow()
 
-    fun search(userId: String, page: Int, count: Int) {
+    fun search(userId: String) {
         viewModelScope.launch {
             dataFlowUserCase(
                 DataFlowUseCase.Params(
-                    userId,
-                    page,
-                    count
+                    userId
                 )
             ).catch { e ->
                 Log.e(TAG, "$e")
+
                 _error.emit(e.message ?: "")
 //                toastProvider.showToast("$e")
             }.collect {

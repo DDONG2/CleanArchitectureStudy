@@ -7,4 +7,4 @@ import com.example.cleanarchitecturestudy.domain.model.RepoInfo
 
 fun DataDto.toInfoList() = items.map { it.toInfo() }
 
-private fun Item.toInfo() = RepoInfo(login, reposUrl, url)
+fun Item.toInfo() = RepoInfo(id, login, reposUrl, url)
