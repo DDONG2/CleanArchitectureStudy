@@ -6,13 +6,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cleanarchitecturestudy.BaseViewModel
 import com.example.cleanarchitecturestudy.R
 import com.example.cleanarchitecturestudy.databinding.HolderItemBinding
 import com.example.cleanarchitecturestudy.domain.model.RepoInfo
 
 
 class UserAdapter(
-    private val homeFragmentViewModel: HomeFragmentViewModel
+    private val homeFragmentViewModel: BaseViewModel
 ) : ListAdapter<RepoInfo, GithubUserViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(
@@ -47,7 +48,7 @@ class UserAdapter(
 
 class GithubUserViewHolder(
     private val binding: HolderItemBinding,
-    viewModel: HomeFragmentViewModel
+    viewModel: BaseViewModel
 ) : RecyclerView.ViewHolder(binding.root) {
     init {
         binding.viewModel = viewModel

@@ -6,7 +6,21 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.cleanarchitecturestudy.presenter.HomeFragment"
-        android:label="메인">
-
-    </fragment>
+        android:label="메인1"/>
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.example.cleanarchitecturestudy.presenter.HomeFragment2"
+        android:label="메인2"/>
+    <fragment
+        android:id="@+id/homeFragment3"
+        android:name="com.example.cleanarchitecturestudy.presenter.HomeFragment3"
+        android:label="메인3"/>
+    <fragment
+        android:id="@+id/homeFragment4"
+        android:name="com.example.cleanarchitecturestudy.presenter.HomeFragment4"
+        android:label="메인4"/>
+    <fragment
+        android:id="@+id/homeFragment5"
+        android:name="com.example.cleanarchitecturestudy.presenter.HomeFragment5"
+        android:label="메인5"/>
 </navigation>

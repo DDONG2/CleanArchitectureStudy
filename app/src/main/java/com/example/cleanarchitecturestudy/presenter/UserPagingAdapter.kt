@@ -6,12 +6,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cleanarchitecturestudy.BaseViewModel
 import com.example.cleanarchitecturestudy.R
 import com.example.cleanarchitecturestudy.databinding.HolderItemBinding
 import com.example.cleanarchitecturestudy.domain.model.RepoInfo
 
 class UserPagingAdapter(
-    private val homeFragmentViewModel: HomeFragmentViewModel
+    private val homeFragmentViewModel: BaseViewModel
 ) : PagingDataAdapter<RepoInfo, GithubUserPagingViewHolder>(DIFF_CALLBACK) {
 
     companion object {
@@ -47,7 +48,7 @@ class UserPagingAdapter(
 
 class GithubUserPagingViewHolder(
     private val binding: HolderItemBinding,
-    viewModel: HomeFragmentViewModel
+    viewModel: BaseViewModel
 ) : RecyclerView.ViewHolder(binding.root) {
     init {
         binding.viewModel = viewModel
