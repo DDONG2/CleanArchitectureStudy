@@ -20,6 +20,10 @@
         <action
             android:id="@+id/action_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/detailFragment" />
         <argument
             android:name="repoInfo"
             app:argType="com.example.cleanarchitecturestudy.domain.model.RepoInfo" />

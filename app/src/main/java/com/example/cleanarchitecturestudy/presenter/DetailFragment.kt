@@ -65,11 +65,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
         dataBinding.run {
             recyclerView.adapter = userPagingDataAdapter
             titleTextHome.setOnClickListener {
-                findNavController().navigate("detailFragment") {
-                    popUpTo(findNavController().graph.startDestinationId){
-                        inclusive = true
-                    }
-                }
+                val action = DetailFragmentDirections.actionHomeFragment()
+                requireView().findNavController().navigate(action)
             }
         }
     }
