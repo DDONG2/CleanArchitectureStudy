@@ -9,11 +9,12 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.cleanarchitecturestudy.BaseFragment
 import com.example.cleanarchitecturestudy.R
 import com.example.cleanarchitecturestudy.databinding.FragmentHome2Binding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
-
+@AndroidEntryPoint
 class HomeFragment2 : BaseFragment<FragmentHome2Binding>() {
     private val homeFragmentViewModel2 by viewModels<HomeFragmentViewModel2>()
 

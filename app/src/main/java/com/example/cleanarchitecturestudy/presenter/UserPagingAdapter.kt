@@ -36,7 +36,8 @@ class UserPagingAdapter(
                 R.layout.holder_item,
                 parent,
                 false
-            )
+            ),
+            itemClickListener
         )
     }
 

@@ -6,15 +6,18 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import com.example.cleanarchitecturestudy.BaseFragment
 import com.example.cleanarchitecturestudy.R
 import com.example.cleanarchitecturestudy.databinding.FragmentDetailBinding
 import com.example.cleanarchitecturestudy.databinding.FragmentHomeBinding
+import com.example.cleanarchitecturestudy.domain.model.RepoInfo
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
-
+@AndroidEntryPoint
 class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     private val detailViewModel by viewModels<DetailViewModel>()
 
@@ -25,9 +28,11 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
         UserAdapter(detailViewModel)
     }
 
-//    private val userPagingDataAdapter: UserPagingAdapter by lazy {
-//        UserPagingAdapter(detailViewModel)
-//    }
+    private val userPagingDataAdapter: UserPagingAdapter by lazy {
+        UserPagingAdapter(itemClickListener = { repoInfo ->
+            onItemClick(repoInfo)
+        })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +48,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
                 supervisorScope {
                     launch(handler) {
                         detailViewModel.result.collectLatest { repoInfo ->
-//                            userPagingDataAdapter.submitData(repoInfo)
+                            userPagingDataAdapter.submitData(repoInfo)
                         }
                     }
                 }
@@ -57,7 +62,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     // onViewCreated
     override fun initView() {
         dataBinding.run {
-//            recyclerView.adapter = userPagingDataAdapter
+            recyclerView.adapter = userPagingDataAdapter
         }
     }
 
@@ -69,6 +74,11 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     }
 
     override fun initArgument(bundle: Bundle) {
+    }
+
+    private fun onItemClick(repoInfo: RepoInfo) {
+        val action = HomeFragmentDirections.actionDetailFragment(repoInfo)
+        requireView().findNavController().navigate(action)
     }
 
     companion object {

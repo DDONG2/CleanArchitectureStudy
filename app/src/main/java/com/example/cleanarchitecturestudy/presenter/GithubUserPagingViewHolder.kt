@@ -7,8 +7,14 @@ import com.example.cleanarchitecturestudy.domain.model.RepoInfo
 
 class GithubUserPagingViewHolder(
     private val binding: HolderItemBinding,
+    private val itemClickListener: (RepoInfo) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
     init {
+        itemView.setOnClickListener {
+            binding.repoInfo?.run{
+                itemClickListener(this)
+            }
+        }
     }
 
     fun bind(item: RepoInfo) {

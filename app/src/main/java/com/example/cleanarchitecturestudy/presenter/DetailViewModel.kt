@@ -7,6 +7,7 @@ import androidx.paging.PagingData
 import com.example.cleanarchitecturestudy.BaseViewModel
 import com.example.cleanarchitecturestudy.domain.DataFlowUseCase
 import com.example.cleanarchitecturestudy.domain.model.RepoInfo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -14,7 +15,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
+@HiltViewModel
 class DetailViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val dataFlowUserCase: DataFlowUseCase,

@@ -10,11 +10,12 @@ import com.example.cleanarchitecturestudy.BaseFragment
 import com.example.cleanarchitecturestudy.R
 import com.example.cleanarchitecturestudy.databinding.FragmentHome5Binding
 import com.example.cleanarchitecturestudy.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
-
+@AndroidEntryPoint
 class HomeFragment5 : BaseFragment<FragmentHome5Binding>() {
 
     override val layoutId: Int
