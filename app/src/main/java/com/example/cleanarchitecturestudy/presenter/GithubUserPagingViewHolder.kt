@@ -15,6 +15,7 @@ class GithubUserPagingViewHolder(
                 itemClickListener(this)
             }
         }
+
     }
 
     fun bind(item: RepoInfo) {

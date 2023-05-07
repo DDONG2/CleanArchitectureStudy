@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.cleanarchitecturestudy.BaseFragment
 import com.example.cleanarchitecturestudy.R
 import com.example.cleanarchitecturestudy.databinding.FragmentDetailBinding
@@ -63,6 +64,13 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     override fun initView() {
         dataBinding.run {
             recyclerView.adapter = userPagingDataAdapter
+            titleTextHome.setOnClickListener {
+                findNavController().navigate("detailFragment") {
+                    popUpTo(findNavController().graph.startDestinationId){
+                        inclusive = true
+                    }
+                }
+            }
         }
     }
 
