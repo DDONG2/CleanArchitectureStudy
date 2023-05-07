@@ -17,7 +17,7 @@
             android:layout_height="60dp"
             android:gravity="center"
             android:paddingLeft="10dp"
-            android:text="리스트"
+            android:text="상세 페이지"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/ConstraintLayout"

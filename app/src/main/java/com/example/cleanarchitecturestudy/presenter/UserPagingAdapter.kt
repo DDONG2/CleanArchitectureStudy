@@ -12,7 +12,7 @@ import com.example.cleanarchitecturestudy.databinding.HolderItemBinding
 import com.example.cleanarchitecturestudy.domain.model.RepoInfo
 
 class UserPagingAdapter(
-    private val homeFragmentViewModel: BaseViewModel
+    private val itemClickListener: (RepoInfo) -> Unit
 ) : PagingDataAdapter<RepoInfo, GithubUserPagingViewHolder>(DIFF_CALLBACK) {
 
     companion object {
@@ -36,7 +36,7 @@ class UserPagingAdapter(
                 R.layout.holder_item,
                 parent,
                 false
-            ), homeFragmentViewModel
+            )
         )
     }
 
@@ -44,20 +44,4 @@ class UserPagingAdapter(
         getItem(position)?.let { holder.bind(it) }
     }
 
-}
-
-class GithubUserPagingViewHolder(
-    private val binding: HolderItemBinding,
-    viewModel: BaseViewModel
-) : RecyclerView.ViewHolder(binding.root) {
-    init {
-        binding.viewModel = viewModel
-    }
-
-    fun bind(item: RepoInfo) {
-        binding.run {
-            repoInfo = item
-//            executePendingBindings()
-        }
-    }
 }

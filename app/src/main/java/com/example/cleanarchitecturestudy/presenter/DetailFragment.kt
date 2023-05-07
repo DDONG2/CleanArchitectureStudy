@@ -4,38 +4,30 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.findNavController
-import androidx.paging.LoadState
 import com.example.cleanarchitecturestudy.BaseFragment
 import com.example.cleanarchitecturestudy.R
+import com.example.cleanarchitecturestudy.databinding.FragmentDetailBinding
 import com.example.cleanarchitecturestudy.databinding.FragmentHomeBinding
-import com.example.cleanarchitecturestudy.domain.model.RepoInfo
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 
-@AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
-    private val homeFragmentViewModel by viewModels<HomeFragmentViewModel>()
+class DetailFragment : BaseFragment<FragmentDetailBinding>() {
+    private val detailViewModel by viewModels<DetailViewModel>()
 
     override val layoutId: Int
-        get() = R.layout.fragment_home
+        get() = R.layout.fragment_detail
 
     private val userDataAdapter: UserAdapter by lazy {
-        UserAdapter(homeFragmentViewModel)
+        UserAdapter(detailViewModel)
     }
 
-    private val userPagingDataAdapter: UserPagingAdapter by lazy {
-        UserPagingAdapter(itemClickListener = { repoInfo ->
-            onItemClick(repoInfo)
-        })
-    }
+//    private val userPagingDataAdapter: UserPagingAdapter by lazy {
+//        UserPagingAdapter(detailViewModel)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +42,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 val handler = CoroutineExceptionHandler { _, e -> println("Caught $e") }
                 supervisorScope {
                     launch(handler) {
-                        homeFragmentViewModel.result.collectLatest { repoInfo ->
-                            userPagingDataAdapter.submitData(repoInfo)
+                        detailViewModel.result.collectLatest { repoInfo ->
+//                            userPagingDataAdapter.submitData(repoInfo)
                         }
                     }
                 }
@@ -65,13 +57,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     // onViewCreated
     override fun initView() {
         dataBinding.run {
-            recyclerView.adapter = userPagingDataAdapter
+//            recyclerView.adapter = userPagingDataAdapter
         }
     }
 
     private fun search() {
         Log.d("IDE", "Call Search API")
-        homeFragmentViewModel.search("DONI")
+        detailViewModel.search("DONI")
 
 
     }
@@ -79,17 +71,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun initArgument(bundle: Bundle) {
     }
 
-    private fun onItemClick(repoInfo: RepoInfo) {
-        val action = HomeFragmentDirections.actionDetailFragment(repoInfo)
-        requireView().findNavController().navigate(action)
-    }
-
     companion object {
-        private val TAG = HomeFragment::class.java.simpleName
+        private val TAG = DetailFragment::class.java.simpleName
 
         @JvmStatic
         fun newInstance() =
-            HomeFragment().apply {
+            DetailFragment().apply {
             }
     }
 }

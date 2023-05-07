@@ -1,26 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.cleanarchitecturestudy.presenter.HomeFragment"
-        android:label="메인1"/>
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/action_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.cleanarchitecturestudy.presenter.DetailFragment"
+        android:label="상세">
+        <argument
+            android:name="repoInfo"
+            app:argType="com.example.cleanarchitecturestudy.domain.model.RepoInfo" />
+    </fragment>
+
+
     <fragment
         android:id="@+id/homeFragment2"
         android:name="com.example.cleanarchitecturestudy.presenter.HomeFragment2"
-        android:label="메인2"/>
+        android:label="메인2" />
     <fragment
         android:id="@+id/homeFragment3"
         android:name="com.example.cleanarchitecturestudy.presenter.HomeFragment3"
-        android:label="메인3"/>
+        android:label="메인3" />
     <fragment
         android:id="@+id/homeFragment4"
         android:name="com.example.cleanarchitecturestudy.presenter.HomeFragment4"
-        android:label="메인4"/>
+        android:label="메인4" />
     <fragment
         android:id="@+id/homeFragment5"
         android:name="com.example.cleanarchitecturestudy.presenter.HomeFragment5"
-        android:label="메인5"/>
+        android:label="메인5" />
+
+
 </navigation>
